@@ -340,11 +340,11 @@ print(params)
             if self.brand == "APPLEPAY" {
                 
 
-                let request = OPPPaymentProvider.paymentRequest(withMerchantIdentifier: "com.example.tset", countryCode: "SA")
+                let request = OPPPaymentProvider.paymentRequest(withMerchantIdentifier: "merchent.merchenthyperpay", countryCode: "SA")
                 request.currencyCode = "SAR"
               let amount = NSDecimalNumber(value: Double(String(format: "%.2f", self.amount))!)
               print(amount)
-                request.paymentSummaryItems = [PKPaymentSummaryItem(label: "Service Fee", amount: amount) , PKPaymentSummaryItem(label: "Aloo", amount: amount)]
+                request.paymentSummaryItems = [PKPaymentSummaryItem(label: "Service Fee", amount: amount) , PKPaymentSummaryItem(label: "Demo", amount: amount)]
                 DispatchQueue.main.async {
                     if let vc = PKPaymentAuthorizationViewController(paymentRequest: request) as PKPaymentAuthorizationViewController? {
                     vc.delegate = self
