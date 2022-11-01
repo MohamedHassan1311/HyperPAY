@@ -4,7 +4,6 @@ import SafariServices
 
 
 
-
 @available(iOS 11.0, *)
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate,OPPCheckoutProviderDelegate,SFSafariViewControllerDelegate,PKPaymentAuthorizationViewControllerDelegate  {
@@ -27,7 +26,7 @@ import SafariServices
     
     var safariVC: SFSafariViewController?
 
- 
+    let googleApiKey = "AIzaSyBgJ3QO7HEoyxiY_2-lcxuV53oT-oTbVts"
     
     var transaction: OPPTransaction?
     
@@ -46,7 +45,7 @@ import SafariServices
         let batteryChannel = FlutterMethodChannel(name: "Hyperpay.demo.fultter/channel",
             binaryMessenger: controller.binaryMessenger)
       
-   
+
 //
        if #available(iOS 10.0, *) {
          // For iOS 10 display notification (sent via APNS)
@@ -69,7 +68,12 @@ import SafariServices
             [weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
             
             self!.Presult = result
-
+//            UIApplication.shared.registerForRemoteNotifications()
+//           FirebaseApp.configure()
+//            GeneratedPluginRegistrant.register(with: self!)
+//
+//
+   
 
       // Note: this method is invoked on the UI thread.
       if call.method == "gethyperpayresponse"{
@@ -155,7 +159,7 @@ import SafariServices
 
             } else if self.brand == "APPLEPAY" {
                 
-                let paymentRequest = OPPPaymentProvider.paymentRequest(withMerchantIdentifier: "com.example.tset", countryCode: "SA")
+                let paymentRequest = OPPPaymentProvider.paymentRequest(withMerchantIdentifier: "merchant.com.example.tset", countryCode: "SA")
                 if #available(iOS 12.1.1, *) {
                     paymentRequest.supportedNetworks = [ PKPaymentNetwork.mada,PKPaymentNetwork.visa,
                                                          PKPaymentNetwork.masterCard ]
@@ -262,33 +266,7 @@ import SafariServices
 
                                     
                                     
-//                                    self.transaction  = OPPTransaction(paymentParams: params)
-//                                    self.provider.submitTransaction(self.transaction!) { (transaction, error) in
-//                                        guard let transaction = self.transaction else {
-//                                            // Handle invalid transaction, check error
-////
-//                                            self.createalart(titletext: error as! String, msgtext: "")
-////
-//                                            return
-//                                        }
-//
-//                                        if transaction.type == .asynchronous {
-//
-//                                            NotificationCenter.default.addObserver(self, selector: #selector(self.didReceiveAsynchronousPaymentCallback), name: Notification.Name(rawValue: "AsyncPaymentCompletedNotificationKey"), object: nil)
-//
-//                                            self.safariVC = SFSafariViewController(url: self.transaction!.redirectURL!)
-//                                            self.safariVC?.delegate = self;
-//                                          //  self.present(self.safariVC!, animated: true, completion: nil)
-//
-//                                        } else if transaction.type == .synchronous {
-//                                            // Send request to your server to obtain transaction status
-//
-//                                            result1("success")
-//
-//
-//                                        } else {
-//                                            // Handle the error
-//                                        }
+
 print(params)
                 self.transaction  = OPPTransaction(paymentParams: params)
                 self.provider.submitTransaction(self.transaction!) { (transaction, error) in
@@ -340,11 +318,11 @@ print(params)
             if self.brand == "APPLEPAY" {
                 
 
-                let request = OPPPaymentProvider.paymentRequest(withMerchantIdentifier: "merchent.merchenthyperpay", countryCode: "SA")
+                let request = OPPPaymentProvider.paymentRequest(withMerchantIdentifier: "merchant.com.example.tset", countryCode: "SA")
                 request.currencyCode = "SAR"
               let amount = NSDecimalNumber(value: Double(String(format: "%.2f", self.amount))!)
               print(amount)
-                request.paymentSummaryItems = [PKPaymentSummaryItem(label: "Service Fee", amount: amount) , PKPaymentSummaryItem(label: "Demo", amount: amount)]
+                request.paymentSummaryItems = [PKPaymentSummaryItem(label: "Service Fee", amount: amount) , PKPaymentSummaryItem(label: "Test", amount: amount)]
                 DispatchQueue.main.async {
                     if let vc = PKPaymentAuthorizationViewController(paymentRequest: request) as PKPaymentAuthorizationViewController? {
                     vc.delegate = self
@@ -611,6 +589,7 @@ self.window?.rootViewController?.present(alertController, animated: true, comple
     }
     
 
+//
     
    
 }
