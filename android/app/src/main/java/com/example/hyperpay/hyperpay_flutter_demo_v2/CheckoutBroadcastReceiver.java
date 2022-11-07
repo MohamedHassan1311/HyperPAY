@@ -16,7 +16,7 @@ public class CheckoutBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
 
-       if (CheckoutActivity.ACTION_ON_BEFORE_SUBMIT.equals(action)) {
+        if (CheckoutActivity.ACTION_ON_BEFORE_SUBMIT.equals(action)) {
             String paymentBrand = intent.getStringExtra(CheckoutActivity.EXTRA_PAYMENT_BRAND);
             String checkoutId = intent.getStringExtra(CheckoutActivity.EXTRA_CHECKOUT_ID);
 
@@ -30,7 +30,7 @@ public class CheckoutBroadcastReceiver extends BroadcastReceiver {
             /* Also it can be used to cancel the checkout process by sending
                the CheckoutActivity.EXTRA_CANCEL_CHECKOUT */
 
-           intent.putExtra(CheckoutActivity.EXTRA_TRANSACTION_ABORTED, false);
+            intent.putExtra(CheckoutActivity.EXTRA_TRANSACTION_ABORTED, false);
 
             context.startActivity(intent);
         }
