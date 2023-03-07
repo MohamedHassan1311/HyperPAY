@@ -228,11 +228,11 @@ public class MainActivity extends FlutterActivity implements  ITransactionListen
 
 
         CheckoutSettings checkoutSettings =  new CheckoutSettings(checkoutId,paymentBrands,
-                Connect.ProviderMode.TEST).setShopperResultUrl("com.aloo.userapp://result");
+                Connect.ProviderMode.TEST).setShopperResultUrl("com.elbaz.demohyperpayapp://result");
 
         if (mode.equals("LIVE")) {
             checkoutSettings =  new CheckoutSettings(checkoutId,paymentBrands,
-                    Connect.ProviderMode.LIVE).setShopperResultUrl("com.aloo.userapp://result");
+                    Connect.ProviderMode.LIVE).setShopperResultUrl("com.elbaz.demohyperpayapp://result");
         }
 
 
@@ -264,7 +264,7 @@ public class MainActivity extends FlutterActivity implements  ITransactionListen
 
             try {
                 PaymentParams paymentParams = new PaymentParams(checkoutid,"STC_PAY");
-                paymentParams.setShopperResultUrl("com.aloo.userapp://result");
+                paymentParams.setShopperResultUrl("com.elbaz.demohyperpayapp://result");
                 Transaction transaction = new Transaction(paymentParams);
                 paymentProvider.setThreeDSWorkflowListener(threeDSWorkflowListener);
                 paymentProvider.submitTransaction(transaction, MainActivity.this);
@@ -347,7 +347,7 @@ public class MainActivity extends FlutterActivity implements  ITransactionListen
                             year,
                             cvv
                     );
-                    paymentParams.setShopperResultUrl("com.aloo.userapp://result");
+                    paymentParams.setShopperResultUrl("com.elbaz.demohyperpayapp://result");
 
                     Transaction transaction = new Transaction(paymentParams);
 
@@ -499,7 +499,7 @@ public class MainActivity extends FlutterActivity implements  ITransactionListen
         super.onNewIntent(intent);
 
 
-        if (intent.getScheme().equals("com.aloo.userapp")) {
+        if (intent.getScheme().equals("com.elbaz.demohyperpayapp")) {
 
             success("success");
 
