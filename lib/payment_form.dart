@@ -307,7 +307,7 @@ class _payment_formState extends State<payment_form> {
   Future<void> getpaymentstatus() async {
     var status;
 
-    Uri myUrl = Uri.parse('http://dev.hyperpay.com/hyperpay-demo/getpaymentstatus.php?id=$_checkoutid');
+    Uri myUrl = Uri.parse('https://dev.hyperpay.com/hyperpay-demo/getpaymentstatus.php?id=$_checkoutid');
     final response = await http.post(
       myUrl,
       headers: {'Accept': 'application/json'},
@@ -327,7 +327,7 @@ class _payment_formState extends State<payment_form> {
 
   Future<String> _requestCheckoutId() async {
     var status;
-    var myUrl = Uri.parse('http://dev.hyperpay.com/hyperpay-demo/getcheckoutid.php');
+    var myUrl = Uri.parse('https://dev.hyperpay.com/hyperpay-demo/getcheckoutid.php');
 
     final response = await http.post(
       myUrl,
